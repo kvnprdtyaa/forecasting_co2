@@ -3,6 +3,13 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 model = pickle.load(open('prediksi_co2.sav','rb'))
 
 df = pd.read_excel("CO2 dataset.xlsx")
