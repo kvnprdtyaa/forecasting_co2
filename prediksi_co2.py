@@ -4,7 +4,7 @@ import pandas as pd
 import altair as alt
 
 st.set_page_config(
-        page_title="My Page Title",
+        page_title="Forecasting CO2",
 )
 
 hide_streamlit_style = """
