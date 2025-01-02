@@ -3,6 +3,10 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+st.set_page_config(
+        page_title="My Page Title",
+)
+
 hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
