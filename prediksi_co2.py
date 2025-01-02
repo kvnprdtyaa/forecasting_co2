@@ -5,7 +5,7 @@ import altair as alt
 
 st.set_page_config(
         page_title="Forecasting CO2",
-        page_icon="☁︎"
+        page_icon=":cloud:"
 )
 
 hide_streamlit_style = """
