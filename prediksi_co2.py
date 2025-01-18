@@ -12,8 +12,19 @@ hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
     div[data-testid="stStatusWidget"] {visibility: hidden;}
-    </style>
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+</style>
+<div class="footer">
+    <p>Dataset: <a href="https://www.kaggle.com/datasets/rohitshirudkar/air-quality-forecasting-co2-emissions" target="_blank">Kaggle - Air Quality Forecasting CO2 Emissions</a></p>
+</div>
 """
+
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 model = pickle.load(open('prediksi_co2.sav','rb'))
