@@ -12,6 +12,7 @@ hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
     div[data-testid="stStatusWidget"] {visibility: hidden;}
+    
     .footer {
     position: fixed;
     left: 0;
