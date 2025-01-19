@@ -77,3 +77,4 @@ footer_html = """
   <p>Dataset: <a href="https://www.kaggle.com/datasets/rohitshirudkar/air-quality-forecasting-co2-emissions" target="_blank">Kaggle - Air Quality Forecasting CO2 Emissions</a></p>
 </div>"""
 
+st.markdown(footer_html, unsafe_allow_html=True)
