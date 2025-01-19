@@ -9,23 +9,11 @@ st.set_page_config(
 )
 
 hide_streamlit_style = """
-    <style>
+<style>
     #MainMenu {visibility: hidden;}
     div[data-testid="stStatusWidget"] {visibility: hidden;}
     div[data-testid="stToolbar"] {visibility: hidden;}
-    
-    .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
 </style>
-
-<div class="footer">
-    <p>Dataset: <a href="https://www.kaggle.com/datasets/rohitshirudkar/air-quality-forecasting-co2-emissions" target="_blank">Kaggle - Air Quality Forecasting CO2 Emissions</a></p>
-</div>
 """
 
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -73,3 +61,19 @@ if st.button("Predict"):
 
     except Exception as e:
         st.error(f"Terjadi kesalahan saat prediksi: {e}")
+
+footer_html = """
+<style>
+    .footer {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<div class='footer'>
+  <p>Dataset: <a href="https://www.kaggle.com/datasets/rohitshirudkar/air-quality-forecasting-co2-emissions" target="_blank">Kaggle - Air Quality Forecasting CO2 Emissions</a></p>
+</div>"""
+
