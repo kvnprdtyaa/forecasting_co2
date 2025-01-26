@@ -2,11 +2,12 @@ import pickle
 import streamlit as st
 import pandas as pd
 import altair as alt
+from io import BytesIO
 
 st.set_page_config(
-        page_title="Forecasting CO2",
-        page_icon=":cloud:",
-        layout="wide"
+    page_title="Forecasting CO2",
+    page_icon=":cloud:",
+    layout="wide"
 )
 
 custom_css = """
@@ -15,13 +16,6 @@ custom_css = """
         color: white;
         text-align: center;
         margin-bottom: 20px;
-    }
-    .header a {
-        color: #1E90FF;
-        text-decoration: none;
-    }
-    .header a:hover {
-        text-decoration: underline;
     }
     .stButton>button {
         color: white;
@@ -56,11 +50,11 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-year = st.slider("Tentukan Jumlah Tahun Prediksi", 1, 30, step=1)
-
-tab1, tab2 = st.tabs(["Prediksi", "Informasi Dataset"])
+tab1, tab2 = st.tabs(["Prediksi", "Dataset"])
 
 with tab1:
+    year = st.slider("Tentukan Jumlah Tahun Prediksi", 1, 30, step=1)
+
     if st.button("Predict"):
         try:
             forecast = model.forecast(year)
@@ -88,6 +82,22 @@ with tab1:
             ).interactive() 
 
             st.altair_chart(chart, use_container_width=True)
+
+            def to_excel(dataframe):
+                output = BytesIO()
+                with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                    dataframe.to_excel(writer, index=True, sheet_name='Prediksi')
+                processed_data = output.getvalue()
+                return processed_data
+
+            excel_data = to_excel(pred)
+
+            st.download_button(
+                label="Download Prediksi",
+                data=excel_data,
+                file_name='hasil_prediksi_co2.xlsx',
+                mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
 
         except Exception as e:
             st.error(f"Terjadi kesalahan saat prediksi: {e}")
