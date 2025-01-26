@@ -56,9 +56,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-with st.sidebar:
-    st.header("Pengaturan")
-    year = st.slider("Tentukan Jumlah Tahun Prediksi", 1, 30, step=1)
+year = st.slider("Tentukan Jumlah Tahun Prediksi", 1, 30, step=1)
 
 tab1, tab2 = st.tabs(["Prediksi", "Informasi Dataset"])
 
