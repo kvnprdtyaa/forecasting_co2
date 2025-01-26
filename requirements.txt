@@ -2,3 +2,4 @@ pandas
 statsmodels
 streamlit
 openpyxl
+xlsxwriter
