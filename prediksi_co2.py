@@ -10,12 +10,6 @@ st.set_page_config(
     layout="wide"
 )
 
-'''
-    [![Repo](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/KvnPrdtyaa/forecasting_co2) 
-
-'''
-st.markdown("<br>",unsafe_allow_html=True)
-
 custom_css = """
 <style>
     .header {
