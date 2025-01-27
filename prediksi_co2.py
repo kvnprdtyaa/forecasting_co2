@@ -10,6 +10,12 @@ st.set_page_config(
     layout="wide"
 )
 
+'''
+    [![Repo](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/KvnPrdtyaa/forecasting_co2) 
+
+'''
+st.markdown("<br>",unsafe_allow_html=True)
+
 custom_css = """
 <style>
     .header {
@@ -23,6 +29,20 @@ custom_css = """
         padding: 8px 16px;
         font-weight: bold;
     }
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/pattern-5.svg"),
+            linear-gradient(#4d4d4d, transparent),
+            linear-gradient(to top left, #333333, transparent),
+            linear-gradient(to top right, #4d4d4d, transparent);
+        background-size: contain;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        background-position: left;
+        background-repeat: repeat-x;
+        background-blend-mode: darken;
+        will-change: transform;
+    }
 </style>
 """
 
@@ -31,8 +51,9 @@ st.markdown(custom_css, unsafe_allow_html=True)
 hide_streamlit_style = """
 <style>
     #MainMenu {visibility: hidden;}
-    div[data-testid="stStatusWidget"] {visibility: hidden;}
-    div[data-testid="stToolbar"] {visibility: hidden;}
+    [data-testid="stStatusWidget"] {visibility: hidden;}
+    [data-testid="stToolbar"] {visibility: hidden;}
+    [data-testid="stHeader"] {visibility: hidden;}
 </style>
 """
 
