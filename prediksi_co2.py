@@ -49,7 +49,7 @@ apply_custom_styles()
 st.markdown(
     """
     <div style="text-align: right; margin-bottom: 25px;">
-        <a href="https://github.com/KvnPrdtyaa/forecasting_co2">
+        <a href="https://github.com/kvnprdtyaa/forecasting_co2">
             <img src="https://badgen.net/badge/icon/GitHub?icon=github&label" alt="GitHub Badge">
         </a>
     </div>
