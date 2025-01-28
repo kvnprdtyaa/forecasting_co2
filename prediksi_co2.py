@@ -10,53 +10,52 @@ st.set_page_config(
     layout="wide"
 )
 
-custom_css = """
-<style>
-    .header {
-        color: white;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .stButton>button {
-        color: white;
-        border-radius: 8px;
-        padding: 8px 16px;
-        font-weight: bold;
-    }
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/pattern-5.svg"),
-            linear-gradient(#4d4d4d, transparent),
-            linear-gradient(to top left, #333333, transparent),
-            linear-gradient(to top right, #4d4d4d, transparent);
-        background-size: contain;
-        width: 100%;
-        height: 100vh;
-        position: fixed;
-        background-position: left;
-        background-repeat: repeat-x;
-        background-blend-mode: darken;
-        will-change: transform;
-    }
-</style>
-"""
+def apply_custom_styles():
+    st.markdown("""
+        <style>
+            .header {
+                color: white;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .stButton>button {
+                color: white;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-weight: bold;
+            }
+            [data-testid="stAppViewContainer"] {
+                background-image: url("https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/pattern-5.svg"),
+                    linear-gradient(#4d4d4d, transparent),
+                    linear-gradient(to top left, #333333, transparent),
+                    linear-gradient(to top right, #4d4d4d, transparent);
+                background-size: contain;
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                background-position: left;
+                background-repeat: repeat-x;
+                background-blend-mode: darken;
+                will-change: transform;
+            }
+            #MainMenu, [data-testid="stStatusWidget"], [data-testid="stToolbar"], [data-testid="stHeader"] {
+                visibility: hidden;
+            }
+        </style>
+""", unsafe_allow_html=True)
 
-st.markdown(custom_css, unsafe_allow_html=True)
+apply_custom_styles()
 
-hide_streamlit_style = """
-<style>
-    #MainMenu {visibility: hidden;}
-    [data-testid="stStatusWidget"] {visibility: hidden;}
-    [data-testid="stToolbar"] {visibility: hidden;}
-    [data-testid="stHeader"] {visibility: hidden;}
-</style>
-"""
-
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-model = pickle.load(open('prediksi_co2.sav','rb'))
-df = pd.read_excel("CO2 dataset.xlsx")
-df['Year'] = pd.to_datetime(df['Year'], format='%Y')
-df.set_index(['Year'], inplace=True)
+st.markdown(
+    """
+    <div style="text-align: right; margin-bottom: 25px;">
+        <a href="https://github.com/KvnPrdtyaa/forecasting_co2">
+            <img src="https://badgen.net/badge/icon/GitHub?icon=github&label" alt="GitHub Badge">
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown("""
 <div class='header'>
@@ -64,6 +63,11 @@ st.markdown("""
     <p>Gunakan aplikasi ini untuk memprediksi emisi CO2 di masa depan.</p> 
 </div>
 """, unsafe_allow_html=True)
+
+model = pickle.load(open('prediksi_co2.sav','rb'))
+df = pd.read_excel("CO2 dataset.xlsx")
+df['Year'] = pd.to_datetime(df['Year'], format='%Y')
+df.set_index(['Year'], inplace=True)
 
 tab1, tab2 = st.tabs(["Prediksi", "Dataset"])
 
@@ -94,7 +98,7 @@ with tab1:
                 title="Prediksi Emisi CO2",
                 width='container',
                 height=450
-            ).interactive() 
+            ).interactive()
 
             st.altair_chart(chart, use_container_width=True)
 
@@ -102,8 +106,7 @@ with tab1:
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
                     dataframe.to_excel(writer, index=True, sheet_name='Prediksi')
-                processed_data = output.getvalue()
-                return processed_data
+                return output.getvalue()
 
             excel_data = to_excel(pred)
 
